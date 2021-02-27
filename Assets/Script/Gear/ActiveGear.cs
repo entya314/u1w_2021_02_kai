@@ -120,13 +120,16 @@ public class ActiveGear : BaseGear
 
         ///自分のベースギア
         BaseGear my_baseGear = this.gameObject.GetComponent<BaseGear>();
+        //接触していたギア
+        BaseGear beforeBg;
         //逆戻り
         if (bfkeycd != key)
         {
+            beforeBg = connectObj_af.GetComponent<BaseGear>();
             //取得したギア情報を削除
-            connectObj_af.GetComponent<BaseGear>().connectGear.Remove(my_baseGear);
+            beforeBg.connectGear.Remove(my_baseGear);
             //自分のリストから相手を削除
-            connectGear.Remove(connectObj_af.GetComponent<BaseGear>());
+            connectGear.Remove(beforeBg);
 
             //接触したギアを上書き取得
             connectObj_af = connectObj_bf;
@@ -134,17 +137,20 @@ public class ActiveGear : BaseGear
             connectPos = connectObj_af.transform.position;
             //接触ギアとの半径を取得
             connectRadius = (connectPos - transform.position).magnitude;
-            return;
-        }
 
-        ///
-        ///接触していたギア
-        ///
-        //前に結合していた相手のリストから自分を除外
-        BaseGear beforeBg = connectObj_bf.GetComponent<BaseGear>();
-        beforeBg.connectGear.Remove(my_baseGear);
-        //自分のリストから相手を削除
-        connectGear.Remove(beforeBg);
+        }
+        else
+        {
+
+            ///
+            ///接触していたギア
+            ///
+            //前に結合していた相手のリストから自分を除外
+            beforeBg = connectObj_bf.GetComponent<BaseGear>();
+            beforeBg.connectGear.Remove(my_baseGear);
+            //自分のリストから相手を削除
+            connectGear.Remove(beforeBg);
+        }
 
         bool fflg = false;
         //離れた相手がアクティブギアであり、connectGearが２つ以上でアクティブギアが場合を除いて解除
