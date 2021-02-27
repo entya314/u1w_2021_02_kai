@@ -143,6 +143,6 @@ public class RotateButton : MonoBehaviour
     /// </summary>
     private int CalcRotate(int num)
     {
-        return ((num % 2) * 2) - 1;
+        return (((num + startGear.startRotate) % 2) * 2) - 1;
     }
 }
