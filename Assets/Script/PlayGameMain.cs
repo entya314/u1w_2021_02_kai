@@ -29,7 +29,7 @@ public class PlayGameMain : MonoBehaviour
         //保存（後で消す）
         //SaveAndLoadManager.SaveStragePlayerPrefs();
         //ステージを読み込む
-        StageData stageData = SaveAndLoadManager.LoadData("1");
+        StageData stageData = SaveAndLoadManager.LoadData(Const.StageId.ToString());
         //ステージを配置する。
         SettingStage(stageData);
     }

@@ -574,10 +574,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5172537917001468637, guid: 1803bdb54cb05894193218d2123316a0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5407101340757222943, guid: 1803bdb54cb05894193218d2123316a0,
         type: 3}
       propertyPath: m_Name
       value: FixGear
+      objectReference: {fileID: 0}
+    - target: {fileID: 5407101340757222943, guid: 1803bdb54cb05894193218d2123316a0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1803bdb54cb05894193218d2123316a0, type: 3}
@@ -861,10 +871,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7365642958131318354, guid: f092072826bbcaa47a5a9cd8a0b835a5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7708312012188412872, guid: f092072826bbcaa47a5a9cd8a0b835a5,
         type: 3}
       propertyPath: m_Name
       value: StartGear
+      objectReference: {fileID: 0}
+    - target: {fileID: 7708312012188412872, guid: f092072826bbcaa47a5a9cd8a0b835a5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f092072826bbcaa47a5a9cd8a0b835a5, type: 3}
@@ -1034,6 +1054,7 @@ MonoBehaviour:
   TitleSound: {fileID: 8300000, guid: 169c9720b88f329479edf58e99ac78d4, type: 3}
   StageSelectSound: {fileID: 0}
   PlayStageSound: {fileID: 0}
+  SE: {fileID: 8300000, guid: 20ac3d470e2d8c9439c729787b70b29a, type: 3}
 --- !u!1 &759519105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,6 +1586,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4672776112651969934, guid: 700ed613480d785409d247a837917dd6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5139645528274447998, guid: 700ed613480d785409d247a837917dd6,
         type: 3}
       propertyPath: m_RootOrder
@@ -1639,6 +1665,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GoalGear
+      objectReference: {fileID: 0}
+    - target: {fileID: 5483238976058389700, guid: 700ed613480d785409d247a837917dd6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 700ed613480d785409d247a837917dd6, type: 3}
@@ -2124,6 +2155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0188d9374860ae47b9e86b16208aa79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sliderType: 0
 --- !u!1 &2087341346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2237,3 +2269,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0188d9374860ae47b9e86b16208aa79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sliderType: 1

@@ -9,6 +9,8 @@ public class ButtonManager : MonoBehaviour
     public void ChangeScene(string sceneName)
     {
         //シーンに遷移追加
-        SceneManager.LoadScene(sceneName);
+        Const.StageId = 1;
+
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 }
