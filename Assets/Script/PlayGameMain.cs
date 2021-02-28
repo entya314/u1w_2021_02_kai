@@ -12,12 +12,15 @@ public class PlayGameMain : MonoBehaviour
     private ActiveGear activeGear;
     //最初は動かさないようフラグ
     private bool activeflg;
-
+    //クリア画面
+    public Canvas clearCanvas;
     //使用アイテムをあらかじめプレハブに配置
     public GameObject PrefabGear_fix;
     public GameObject PrefabGear_active;
     public GameObject PrefabGear_start;
     public GameObject PrefabGear_goal;
+    public GameObject PrefabArrow_start;
+    public GameObject PrefabArrow_goal;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,14 +30,36 @@ public class PlayGameMain : MonoBehaviour
         //カメラを読み込む
         mcamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         //保存（後で消す）
-        //SaveAndLoadManager.SaveStragePlayerPrefs();
+         SaveAndLoadManager.SaveStragePlayerPrefs();
         //ステージを読み込む
-        StageData stageData = SaveAndLoadManager.LoadData(Const.StageId.ToString());
+        //StageData stageData = SaveAndLoadManager.LoadData(Const.StageId.ToString());
+        StageData stageData = SaveAndLoadManager.LoadData("2");
         //ステージを配置する。
         SettingStage(stageData);
+        //clearCanvas
+        clearCanvas.gameObject.SetActive(false);
     }
     private void SettingStage(StageData stageData)
     {
+        //矢印情報を入れる
+        foreach (ArrowObject arrow in stageData.arrowObjects)
+        {
+            //初期データを入れる
+            string name = arrow.MyName.Substring(0, 3);
+            if (name == "sta")
+            {
+                GameObject obj = Instantiate(PrefabArrow_start, arrow.Position, Quaternion.Euler(arrow.Rotation));
+                obj.transform.localScale = arrow.Scale;
+                obj.name = arrow.MyName;
+            }
+            if (name == "gol")
+            {
+                GameObject obj = Instantiate(PrefabArrow_goal, arrow.Position, Quaternion.Euler(arrow.Rotation));
+                obj.transform.localScale = arrow.Scale;
+                obj.name = arrow.MyName;
+            }
+        }
+
         List<GameObject> objs = new List<GameObject>();
         foreach (GearObject grOjb in stageData.gearObjects)
         {
@@ -90,7 +115,7 @@ public class PlayGameMain : MonoBehaviour
                         myGear.connectGear.Add(getGear);
                     }
                     //アクティブならconnectGearを代入
-                    if (obj.GetComponent<ActiveGear>() != null) 
+                    if (obj.GetComponent<ActiveGear>() != null)
                     {
                         GameObject getGear = GameObject.Find(grOjb.ConnectGear);
                         ActiveGear myGear = obj.GetComponent<ActiveGear>();

@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RotateButton : MonoBehaviour
 {
+    //クリアキャンバス
+    public Canvas clearCanvas;
     //スタートギア取得
     StartGear startGear;
     //ゴールギア取得
@@ -120,11 +123,16 @@ public class RotateButton : MonoBehaviour
         }
         if (clearFlg)
         {
-            Debug.Log("ゲームクリア");
+            Invoke("DelayMethod", 1.0f);
         }
 
     }
 
+    void DelayMethod()
+    {
+        clearCanvas.gameObject.SetActive(true);
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(100);
+    }
     private void Update()
     {
         if (updateflg)
@@ -143,6 +151,6 @@ public class RotateButton : MonoBehaviour
     /// </summary>
     private int CalcRotate(int num)
     {
-        return (((num + startGear.startRotate) % 2) * 2) - 1;
+        return (((num + startGear.startRotate + 1) % 2) * 2) - 1;
     }
 }

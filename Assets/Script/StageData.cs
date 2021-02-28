@@ -8,7 +8,7 @@ public class StageData
     public string StageName;
     public int StageNo;
     public GearObject[] gearObjects;
-
+    public ArrowObject[] arrowObjects;
 }
 
 [System.Serializable]
@@ -23,4 +23,13 @@ public class GearObject
     public int ClearCondition;//GoalOnly
     public int StartCondition;//StartOnly
 
+}
+
+[System.Serializable]
+public class ArrowObject
+{
+    public Vector3 Position;
+    public Vector3 Rotation;
+    public Vector3 Scale;
+    public string MyName;
 }

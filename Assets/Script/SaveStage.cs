@@ -18,6 +18,8 @@ public class SaveStage : MonoBehaviour
 
         //画面上の全ギアオブジェクトを取得
         BaseGear[] saveobj = GameObject.FindObjectsOfType<BaseGear>();
+        //画面上の全矢印オブジェクトを取得
+        Arrow[] savearrowobj = GameObject.FindObjectsOfType<Arrow>();
 
         //格納用リスト
         int cou = 0;
@@ -67,6 +69,21 @@ public class SaveStage : MonoBehaviour
             cou++;
         }
         stagedata.gearObjects = list;
+
+        ArrowObject[] arrowlist = new ArrowObject[savearrowobj.Length];
+        cou = 0;
+        foreach (Arrow aobj in savearrowobj)
+        {
+            GameObject obj = aobj.gameObject;
+            ArrowObject go = new ArrowObject();
+            go.Position = obj.transform.position;
+            go.Rotation = obj.transform.transform.localEulerAngles;
+            go.Scale = obj.transform.localScale;
+            go.MyName = obj.name;
+            arrowlist[cou] = go;
+            cou++;
+        }
+        stagedata.arrowObjects = arrowlist;
 
 
         SaveStageDataToJson(stagedata);
