@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: be04392c5b88c5949aa5b3ce4fa27515
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - audioSourceMain: {instanceID: 0}
+  - TitleSound: {fileID: 8300000, guid: 169c9720b88f329479edf58e99ac78d4, type: 3}
+  - StageSelectSound: {instanceID: 0}
+  - PlayStageSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

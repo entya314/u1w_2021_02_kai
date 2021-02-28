@@ -10,7 +10,9 @@ public class Title : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //タイトル音楽再生
+        MusicManager musicManager = MusicManager.Instance;
+        musicManager.PlayMusicOnce();
     }
 
     // Update is called once per frame
