@@ -52,7 +52,7 @@ public class RotateButton : MonoBehaviour
         GoalGear[] ggr = GameObject.FindObjectsOfType<GoalGear>();
         foreach (GoalGear gr in ggr)
         {
-            gr.dirRot = 99;
+            gr.dirRot = 0;
         }
 
         //スタートギアから順番に入れていくリスト
@@ -116,10 +116,6 @@ public class RotateButton : MonoBehaviour
         bool clearFlg = true;
         foreach (GoalGear gg in goalGear)
         {
-            if (gg.dirRot == 99) 
-            {
-                clearFlg = false;
-            }
             if (gg.clearRotate != CalcRotate(gg.dirRot))
             {
                 clearFlg = false;
@@ -136,10 +132,7 @@ public class RotateButton : MonoBehaviour
     void DelayMethod()
     {
         clearCanvas.gameObject.SetActive(true);
-        if (Const.StageId == Const.LastStageId)
-        {
-            naichilab.RankingLoader.Instance.SendScoreAndShowRanking(100);
-        }
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(100);
     }
     private void Update()
     {
@@ -159,6 +152,6 @@ public class RotateButton : MonoBehaviour
     /// </summary>
     private int CalcRotate(int num)
     {
-        return (((num + startGear.startRotate + 1) % 2) * 2) - 1;
+        return ((((num + startGear.startRotate + 1) % 2) ) * 2) - 1;
     }
 }

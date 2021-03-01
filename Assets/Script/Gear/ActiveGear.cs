@@ -8,6 +8,8 @@ public class ActiveGear : BaseGear
     public GameObject connectObj_af;
     //旧接続先の保管
     public GameObject connectObj_bf;
+    //接触した状態を保持する
+    public int JustConnectState;
     //押したキーを格納
     public KeyCode key;
     private Vector3 connectPos;
@@ -30,7 +32,7 @@ public class ActiveGear : BaseGear
             return;
         }
 
-        if (Const.JustConnectState == 2)
+        if (JustConnectState == 2)
         {        // 左に移動
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
@@ -79,7 +81,7 @@ public class ActiveGear : BaseGear
         }
 
         //接触したときにキーを離した動作をする。
-        Const.JustConnectState = 1;
+        JustConnectState = 1;
         ///自分のベースギア
         BaseGear my_baseGear = this.gameObject.GetComponent<BaseGear>();
 
@@ -114,7 +116,7 @@ public class ActiveGear : BaseGear
     private void OnTriggerEnter_After(KeyCode bfkeycd)
     {
         //元の動作をする。
-        Const.JustConnectState = 0;
+        JustConnectState = 0;
 
         ///自分のベースギア
         BaseGear my_baseGear = this.gameObject.GetComponent<BaseGear>();

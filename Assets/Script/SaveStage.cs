@@ -50,11 +50,15 @@ public class SaveStage : MonoBehaviour
             }
             if (obj.GetComponent<ActiveGear>() != null)
             {
-                go.ConnectGear = obj.GetComponent<ActiveGear>().connectObj_af.name;
+                ActiveGear aobj = obj.GetComponent<ActiveGear>();
+                go.ConnectGear_af = aobj.connectObj_af.name;
+                go.ConnectGear_bf = aobj.connectObj_bf.name;
+                go.key = (int)aobj.key;
+                go.JustConnectState = aobj.JustConnectState;
             }
             else
             {
-                go.ConnectGear = "";
+                go.ConnectGear_af = "";
             }
             //初期接続関係性を取得する。
             string[] li = new string[bobj.connectGear.Count];

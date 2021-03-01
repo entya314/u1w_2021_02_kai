@@ -25,6 +25,6 @@ public class BaseGear : MonoBehaviour
     /// <param name="lr">反時計回りマイナス、時計回りプラス</param>
     public void RotateGear(float dtime, int lr)
     {
-        this.gameObject.transform.Rotate(new Vector3(0.0f, 0.0f, lr * Const.GearSpeed * 110.0f * dtime));
+        this.gameObject.transform.Rotate(new Vector3(0.0f, 0.0f, lr * Const.GearSpeed * 5500.0f * dtime/this.gameObject.transform.localScale.x));
     }
 }

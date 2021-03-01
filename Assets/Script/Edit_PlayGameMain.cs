@@ -46,13 +46,13 @@ public class Edit_PlayGameMain : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (Const.JustConnectState == 1)
+            if (activeGear.JustConnectState == 1)
             {
-                Const.JustConnectState = 2;
+                activeGear.JustConnectState = 2;
             }
         }
         //更新毎に呼び出す
-        if (activeflg && Const.JustConnectState != 1)
+        if (activeflg && activeGear.JustConnectState != 1)
         {
             activeGear.MoveActive(Time.deltaTime);
         }

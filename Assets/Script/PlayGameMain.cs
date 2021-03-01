@@ -32,8 +32,7 @@ public class PlayGameMain : MonoBehaviour
         //保存（後で消す）
          SaveAndLoadManager.SaveStragePlayerPrefs();
         //ステージを読み込む
-        //StageData stageData = SaveAndLoadManager.LoadData(Const.StageId.ToString());
-        StageData stageData = SaveAndLoadManager.LoadData("2");
+        StageData stageData = SaveAndLoadManager.LoadData(Const.StageId.ToString());
         //ステージを配置する。
         SettingStage(stageData);
         //clearCanvas
@@ -117,9 +116,15 @@ public class PlayGameMain : MonoBehaviour
                     //アクティブならconnectGearを代入
                     if (obj.GetComponent<ActiveGear>() != null)
                     {
-                        GameObject getGear = GameObject.Find(grOjb.ConnectGear);
                         ActiveGear myGear = obj.GetComponent<ActiveGear>();
+                        GameObject getGear = GameObject.Find(grOjb.ConnectGear_af);
                         myGear.connectObj_af = getGear;
+
+                        GameObject getGear2 = GameObject.Find(grOjb.ConnectGear_bf);
+                        myGear.connectObj_bf = getGear2;
+
+                        myGear.key = (KeyCode)grOjb.key;
+                        myGear.JustConnectState = grOjb.JustConnectState;
                     }
 
                     break;
@@ -148,13 +153,13 @@ public class PlayGameMain : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (Const.JustConnectState == 1)
+            if (activeGear.JustConnectState == 1)
             {
-                Const.JustConnectState = 2;
+                activeGear.JustConnectState = 2;
             }
         }
         //更新毎に呼び出す
-        if (activeflg && Const.JustConnectState != 1)
+        if (activeflg && activeGear.JustConnectState != 1)
         {
             activeGear.MoveActive(Time.deltaTime);
         }

@@ -13,4 +13,16 @@ public class ButtonManager : MonoBehaviour
 
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
+
+    public void GoToNextStage()
+    {
+        Const.StageId++;
+        SceneManager.LoadScene("PlayGame", LoadSceneMode.Single);
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene("PlayGame", LoadSceneMode.Single);
+    }
+
 }

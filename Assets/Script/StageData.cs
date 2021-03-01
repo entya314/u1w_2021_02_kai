@@ -19,10 +19,12 @@ public class GearObject
     public Vector3 Scale;
     public string MyName;
     public string[] DefaultConnectGearName;
-    public string ConnectGear;//ActiveOnly
+    public string ConnectGear_af;//ActiveOnly
+    public string ConnectGear_bf;//ActiveOnly
+    public int key;//ActiveOnly
+    public int JustConnectState;//ActiveOnly
     public int ClearCondition;//GoalOnly
     public int StartCondition;//StartOnly
-
 }
 
 [System.Serializable]
