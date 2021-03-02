@@ -116,7 +116,7 @@ public class RotateButton : MonoBehaviour
         bool clearFlg = true;
         foreach (GoalGear gg in goalGear)
         {
-            if (gg.dirRot == 99) 
+            if (gg.dirRot == 99)
             {
                 clearFlg = false;
             }
@@ -135,6 +135,8 @@ public class RotateButton : MonoBehaviour
 
     void DelayMethod()
     {
+        MusicManager msc = MusicManager.Instance;
+        msc.PlaySE();
         clearCanvas.gameObject.SetActive(true);
         if (Const.StageId == Const.LastStageId)
         {

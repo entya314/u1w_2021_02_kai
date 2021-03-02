@@ -37,6 +37,7 @@ public class MusicManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         GameObject soundObj = new GameObject("audioSource");
+        DontDestroyOnLoad(soundObj);
         //音楽用
         audioSourceMusic = soundObj.AddComponent<AudioSource>();
         audioSourceMusic.volume = 0.5f;

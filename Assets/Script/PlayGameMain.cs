@@ -11,9 +11,11 @@ public class PlayGameMain : MonoBehaviour
     //今動かせるやつを格納
     private ActiveGear activeGear;
     //最初は動かさないようフラグ
-    private bool activeflg;
+    public static bool activeflg;
     //クリア画面
     public Canvas clearCanvas;
+    //説明画面
+    public Canvas firstcanvas;
     //使用アイテムをあらかじめプレハブに配置
     public GameObject PrefabGear_fix;
     public GameObject PrefabGear_active;
@@ -27,10 +29,15 @@ public class PlayGameMain : MonoBehaviour
     {
         //初期値設定
         activeflg = false;
+
+        if (Const.StageId != 1)
+        {
+            firstcanvas.gameObject.SetActive(false);
+        }
         //カメラを読み込む
         mcamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         //保存（後で消す）
-         SaveAndLoadManager.SaveStragePlayerPrefs();
+        SaveAndLoadManager.SaveStragePlayerPrefs();
         //ステージを読み込む
         StageData stageData = SaveAndLoadManager.LoadData(Const.StageId.ToString());
         //ステージを配置する。
@@ -107,24 +114,24 @@ public class PlayGameMain : MonoBehaviour
             {
                 if (grOjb.MyName == obj.name)
                 {
+                    BaseGear myGear = obj.GetComponent<BaseGear>();
                     foreach (string coName in grOjb.DefaultConnectGearName)
                     {
                         BaseGear getGear = GameObject.Find(coName).GetComponent<BaseGear>();
-                        BaseGear myGear = obj.GetComponent<BaseGear>();
                         myGear.connectGear.Add(getGear);
                     }
                     //アクティブならconnectGearを代入
                     if (obj.GetComponent<ActiveGear>() != null)
                     {
-                        ActiveGear myGear = obj.GetComponent<ActiveGear>();
+                        ActiveGear myGear2 = obj.GetComponent<ActiveGear>();
                         GameObject getGear = GameObject.Find(grOjb.ConnectGear_af);
-                        myGear.connectObj_af = getGear;
+                        myGear2.connectObj_af = getGear;
 
                         GameObject getGear2 = GameObject.Find(grOjb.ConnectGear_bf);
-                        myGear.connectObj_bf = getGear2;
+                        myGear2.connectObj_bf = getGear2;
 
-                        myGear.key = (KeyCode)grOjb.key;
-                        myGear.JustConnectState = grOjb.JustConnectState;
+                        myGear2.key = (KeyCode)grOjb.key;
+                        myGear2.JustConnectState = grOjb.JustConnectState;
                     }
 
                     break;
@@ -144,7 +151,21 @@ public class PlayGameMain : MonoBehaviour
                 //アクティブギア取得
                 if (hit.collider.gameObject.GetComponent<ActiveGear>() != null)
                 {
+                    //前のは保存しておく
+                    ActiveGear bf_activeGear = activeGear;
                     activeGear = hit.collider.gameObject.GetComponent<ActiveGear>();
+                    if (!activeGear.fixflg)
+                    {
+                        if (bf_activeGear == null)
+                        {
+                            activeGear.GetComponent<Renderer>().material.color = new Color32(128, 255, 128, 1);
+                        }
+                        else if (!bf_activeGear.fixflg)
+                        {
+                            bf_activeGear.GetComponent<Renderer>().material.color = new Color32(0, 255, 0, 1);
+                            activeGear.GetComponent<Renderer>().material.color = new Color32(128, 255, 128, 1);
+                        }
+                    }
                     Const.ActiveObjectName = hit.collider.gameObject.name;
                     activeflg = true;
                 }

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    public Canvas canvas;
     //画面遷移用メソッド
     public void ChangeScene(string sceneName)
     {
@@ -25,4 +27,8 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("PlayGame", LoadSceneMode.Single);
     }
 
+    public void DeleteCanvas()
+    {
+        Destroy(canvas.gameObject);
+    }
 }

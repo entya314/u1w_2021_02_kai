@@ -14,8 +14,9 @@ public class ActiveGear : BaseGear
     public KeyCode key;
     private Vector3 connectPos;
     private float connectRadius;
+
     //自分の状態変数
-    private bool fixflg;//固定されているときtrue
+    public bool fixflg;//固定されているときtrue
     void Start()
     {
         connectPos = connectObj_af.transform.position;
@@ -73,7 +74,11 @@ public class ActiveGear : BaseGear
     }
     private void OnTriggerEnter(Collider other)
     {
-
+        //開始前は反応しない
+        if (!PlayGameMain.activeflg)
+        {
+            return;
+        }
         //相手からのトリガーは除外
         if (this.gameObject.name != Const.ActiveObjectName)
         {
@@ -107,10 +112,10 @@ public class ActiveGear : BaseGear
         if (connectObj_af.GetComponent<ActiveGear>() != null)
         {
             //アクティブギア取得
-            ActiveGear nextgear = other.gameObject.GetComponent<ActiveGear>();
+            ActiveGear nextgear = connectObj_af.gameObject.GetComponent<ActiveGear>();
+            connectObj_af.GetComponent<Renderer>().material.color = new Color32(0, 128, 0, 1);
             nextgear.fixflg = true;
         }
-
     }
 
     private void OnTriggerEnter_After(KeyCode bfkeycd)
@@ -151,27 +156,23 @@ public class ActiveGear : BaseGear
             connectGear.Remove(beforeBg);
         }
 
-        bool fflg = false;
         //離れた相手がアクティブギアであり、connectGearが２つ以上でアクティブギアが場合を除いて解除
         if (beforeBg.gameObject.GetComponent<ActiveGear>() != null)
         {
             if (beforeBg.connectGear.Count <= 1)
             {
                 beforeBg.gameObject.GetComponent<ActiveGear>().fixflg = false;
+                beforeBg.gameObject.GetComponent<Renderer>().material.color = new Color32(0, 255, 0, 1);
                 return;
             }
 
             foreach (BaseGear bg in beforeBg.connectGear)
             {
-                if (bg.gameObject.GetComponent<ActiveGear>() != null)
+                if (bg.gameObject.GetComponent<ActiveGear>() == null)
                 {
-                    fflg = true;
+                    beforeBg.gameObject.GetComponent<ActiveGear>().fixflg = false;
+                    beforeBg.gameObject.GetComponent<Renderer>().material.color = new Color32(0, 255, 0, 1);
                 }
-            }
-
-            if (!fflg)
-            {
-                beforeBg.gameObject.GetComponent<ActiveGear>().fixflg = false;
             }
         }
 
