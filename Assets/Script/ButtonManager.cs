@@ -18,6 +18,10 @@ public class ButtonManager : MonoBehaviour
 
     public void GoToNextStage()
     {
+        if (Const.StageId == Const.LastStageId)
+        {
+            SceneManager.LoadScene("Title", LoadSceneMode.Single);
+        }
         Const.StageId++;
         SceneManager.LoadScene("PlayGame", LoadSceneMode.Single);
     }

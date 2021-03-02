@@ -14,7 +14,6 @@ namespace naichilab
         /// <summary>
         /// リーダーボード名
         /// </summary>
-        public string BoardName = "ハイスコアランキング";
 
         /// <summary>
         /// クラス名（NCMBオブジェクト名として使われる）

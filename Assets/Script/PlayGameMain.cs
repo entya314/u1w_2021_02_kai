@@ -36,8 +36,6 @@ public class PlayGameMain : MonoBehaviour
         }
         //カメラを読み込む
         mcamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        //保存（後で消す）
-        SaveAndLoadManager.SaveStragePlayerPrefs();
         //ステージを読み込む
         StageData stageData = SaveAndLoadManager.LoadData(Const.StageId.ToString());
         //ステージを配置する。

@@ -40,6 +40,7 @@ public class MusicManager : MonoBehaviour
         DontDestroyOnLoad(soundObj);
         //音楽用
         audioSourceMusic = soundObj.AddComponent<AudioSource>();
+        audioSourceMusic.loop = true;
         audioSourceMusic.volume = 0.5f;
         //SE用
         audioSourceSE = soundObj.AddComponent<AudioSource>();

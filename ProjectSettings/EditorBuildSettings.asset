@@ -9,17 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Title.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/StageSelect.unity
-    guid: e6661d61b4a9402489aa295f0da9e50f
-  - enabled: 1
     path: Assets/Scenes/PlayGame.unity
     guid: 716830e751c8fa2458b28ab07e1dd184
-  - enabled: 1
-    path: Assets/Scenes/Settings.unity
-    guid: a0254e95dbd79d34195d95f00234f275
-  - enabled: 1
-    path: Assets/Scenes/StaffCredit.unity
-    guid: 1f46a8f2c25341c488f9aa9d21792e76
   - enabled: 1
     path: Assets/naichilab/unity-simple-ranking/Scenes/Ranking.unity
     guid: 152244f5855414ac4a3874f14efa583c

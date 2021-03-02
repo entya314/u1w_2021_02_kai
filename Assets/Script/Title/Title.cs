@@ -10,6 +10,8 @@ public class Title : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //保存
+        SaveAndLoadManager.SaveStragePlayerPrefs();
         //タイトル音楽再生
         MusicManager musicManager = MusicManager.Instance;
         musicManager.PlayMusicOnce();
