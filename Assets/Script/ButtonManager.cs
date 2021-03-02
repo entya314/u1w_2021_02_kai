@@ -21,6 +21,7 @@ public class ButtonManager : MonoBehaviour
         if (Const.StageId == Const.LastStageId)
         {
             SceneManager.LoadScene("Title", LoadSceneMode.Single);
+            return;
         }
         Const.StageId++;
         SceneManager.LoadScene("PlayGame", LoadSceneMode.Single);
