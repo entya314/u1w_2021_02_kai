@@ -12,6 +12,7 @@ namespace naichilab
         private const string OBJECT_ID = "objectId";
         private const string COLUMN_SCORE = "score";
         private const string COLUMN_NAME = "name";
+        private const string CREATE_DATE = "createDate";
 
 
         [SerializeField] Text captionLabel;
@@ -193,16 +194,16 @@ namespace naichilab
             MaskOffOn();
 
             var so = new YieldableNcmbQuery<NCMBObject>(_board.ClassName);
-            so.Limit = 30;
-            if (_board.Order == ScoreOrder.OrderByAscending)
-            {
-                so.OrderByAscending(COLUMN_SCORE);
-            }
-            else
-            {
-                so.OrderByDescending(COLUMN_SCORE);
-            }
-
+            so.Limit = 50;
+            //if (_board.Order == ScoreOrder.OrderByAscending)
+            //{
+            //    so.OrderByAscending(COLUMN_SCORE);
+            //}
+            //else
+            //{
+            //    so.OrderByDescending(COLUMN_SCORE);
+            //}
+            so.OrderByDescending(CREATE_DATE);
             yield return so.FindAsync();
 
             Debug.Log("データ取得 : " + so.Count.ToString() + "件");
@@ -219,13 +220,13 @@ namespace naichilab
                 {
                     var n = Instantiate(rankingNodePrefab, scrollViewContent);
                     var rankNode = n.GetComponent<RankingNode>();
-                    rankNode.NoText.text = (++rank).ToString();
+                    rankNode.NoText.text = "・";
                     rankNode.NameText.text = r[COLUMN_NAME].ToString();
 
                     var s = _board.BuildScore(r[COLUMN_SCORE].ToString());
                     rankNode.ScoreText.text = s != null ? s.TextForDisplay : "エラー";
 
-//                    Debug.Log(r[COLUMN_SCORE].ToString());
+                    //                    Debug.Log(r[COLUMN_SCORE].ToString());
                 }
             }
             else
